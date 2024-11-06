@@ -17,7 +17,10 @@ class TaskItem extends Equatable {
   /// Constructor
   const TaskItem({
     required this.id,
+    required this.listId,
     required this.name,
+    required this.description,
+    required this.status,
   });
 
   /// Deserialization
@@ -27,10 +30,17 @@ class TaskItem extends Equatable {
   /// Item's id
   final String id;
 
-  /// Li
+  /// List id of where the item belongs
+  final String listId;
 
   /// Item's name
   final String name;
+
+  /// Item's description
+  final String description;
+
+  /// Item's status
+  final bool status;
 
   /// Serialization
   Map<String, dynamic> toJson() => _$TaskItemToJson(this);
@@ -38,18 +48,27 @@ class TaskItem extends Equatable {
   /// CopyWith
   TaskItem copyWith({
     String? id,
+    String? listId,
     String? name,
+    String? description,
+    bool? status,
   }) {
     return TaskItem(
       id: id ?? this.id,
+      listId: listId ?? this.listId,
       name: name ?? this.name,
+      description: description ?? this.description,
+      status: status ?? this.status,
     );
   }
 
   @override
   List<Object?> get props => [
         id,
+        listId,
         name,
+        description,
+        status,
       ];
 }
 
@@ -82,6 +101,9 @@ class TaskItemRepository {
   /// Create a new item with a given [name]
   String createItem({
     required String name,
+    required String listId,
+    required String description,
+    required bool status,
   }) {
     /// Dynamically generates the id
     final id = name.hashValue;
@@ -89,7 +111,10 @@ class TaskItemRepository {
     /// Create our new TaskItem object and pass our two parameters
     final item = TaskItem(
       id: id,
+      listId: listId,
       name: name,
+      description: description,
+      status: status,
     );
 
     /// Add a new TaskItem object to our data.source
@@ -106,7 +131,10 @@ class TaskItemRepository {
   /// Update operation
   Future<void> updateItem({
     required String id,
+    required String listId,
     required String name,
+    required String description,
+    required bool status,
   }) async {
     final currentItem = itemDb[id];
 
@@ -116,7 +144,10 @@ class TaskItemRepository {
 
     itemDb[id] = TaskItem(
       id: id,
+      listId: listId,
       name: name,
+      description: description,
+      status: status,
     );
   }
 }
