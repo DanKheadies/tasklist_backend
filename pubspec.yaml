@@ -10,6 +10,7 @@ dependencies:
   crypto: ^3.0.6
   dart_frog: ^1.1.0
   equatable: ^2.0.5
+  firedart: ^0.9.8
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
   meta: ^1.16.0
