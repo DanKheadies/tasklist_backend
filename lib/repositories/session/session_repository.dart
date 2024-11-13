@@ -29,7 +29,7 @@ class Session extends Equatable {
   final DateTime createdAt;
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         createdAt,
         expiryDate,
         token,
