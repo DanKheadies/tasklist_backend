@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:tasklist_backend/repositories/user/user_repository.dart';
 
-// Note: unable to fully test b/c I didn't follow the "add username and passwod"
-// e.g. "daco" & "password1," together, e.g. "dacopassword1," and hash (?) it
-// somehow, e.g. "aM7ew0id12kLK"
 Future<Response> onRequest(
   RequestContext context,
   String id,
@@ -22,12 +19,17 @@ Future<Response> _getUser(
   RequestContext context,
   String id,
 ) async {
+  print('1');
   final user = await context.read<UserRepository>().userFromId(id);
 
+  print('2');
   if (user == null) {
+    print('3');
     return Response(statusCode: HttpStatus.forbidden);
   } else {
+    print('4');
     if (user.id != id) {
+      print('5');
       return Response(statusCode: HttpStatus.forbidden);
     }
     return Response.json(
