@@ -12,6 +12,7 @@ dependencies:
   dart_frog_auth: ^1.1.0
   equatable: ^2.0.5
   firedart: ^0.9.8
+  http: ^1.2.2
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
   meta: ^1.16.0
