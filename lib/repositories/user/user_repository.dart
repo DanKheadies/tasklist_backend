@@ -39,8 +39,16 @@ class User extends Equatable {
 
 /// User's Repository
 class UserRepository {
+  /// Incorporating an empty user for null checks
+  final User emptyUser = const User(
+    id: '',
+    name: '',
+    password: '',
+    username: '',
+  );
+
   /// Checks in the database for a user with the provided username and password
-  Future<User?> userFromCredentials(String username, String password) async {
+  Future<User> userFromCredentials(String username, String password) async {
     final hashedPassword = password.hashValue;
     final users = userDb.values.where(
       (user) => user.username == username && user.password == hashedPassword,
@@ -49,7 +57,10 @@ class UserRepository {
     if (users.isNotEmpty) {
       return users.first;
     }
-    return null;
+    // return null;
+    // Update: doesn't seem to like handling NULL
+    // Gonna create an emptyUser
+    return emptyUser;
   }
 
   /// Search for a user by id

@@ -84,17 +84,24 @@ class TaskItemRepository {
     final formattedItems = <String, dynamic>{};
 
     if (itemDb.isNotEmpty) {
-      itemDb.forEach(
-        (String id) {
-          final currentItem = itemDb[id];
-          formattedItems[id] = currentItem?.toJson();
-        } as void Function(
-          String key,
-          TaskItem value,
-        ),
-      );
+      itemDb.forEach((key, value) {
+        formattedItems[key] = value.toJson();
+      });
     }
 
+    return formattedItems;
+  }
+
+  /// Get items by list id
+  Map<String, dynamic> getItemsByList(String listId) {
+    final formattedItems = <String, dynamic>{};
+    if (itemDb.isNotEmpty) {
+      itemDb.forEach((key, value) {
+        if (value.listId == listId) {
+          formattedItems[key] = value.toJson();
+        }
+      });
+    }
     return formattedItems;
   }
 

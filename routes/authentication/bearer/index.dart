@@ -48,7 +48,7 @@ Future<Response> _authenticateUser(RequestContext context) async {
   if (username != null && password != null) {
     final user = await userRepository.userFromCredentials(username, password);
 
-    if (user == null) {
+    if (user == userRepository.emptyUser) {
       return Response(statusCode: HttpStatus.unauthorized);
     } else {
       final session = sessionRepository.createSession(user.id);

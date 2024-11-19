@@ -3,7 +3,7 @@ import 'package:dart_frog_web_socket/dart_frog_web_socket.dart';
 
 Future<Handler> onRequest(RequestContext context) async {
   final handler = webSocketHandler((channel, protocol) {
-    print('derp');
+    print('websocket');
     channel.stream.listen(
       (message) {
         print(message);

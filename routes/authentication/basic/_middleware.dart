@@ -2,9 +2,9 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:dart_frog_auth/dart_frog_auth.dart';
 import 'package:tasklist_backend/repositories/user/user_repository.dart';
 
-Handler middleware(Handler handler) {
-  final userRepository = UserRepository();
+final userRepository = UserRepository();
 
+Handler middleware(Handler handler) {
   return handler
       .use(
         basicAuthentication<User>(
@@ -13,7 +13,8 @@ Handler middleware(Handler handler) {
             return repository.userFromCredentials(username, password);
           },
           applies: (RequestContext context) async =>
-              context.request.method != HttpMethod.post,
+              context.request.method != HttpMethod.post &&
+              context.request.method != HttpMethod.delete,
         ),
       )
       .use(provider<UserRepository>((_) => userRepository));

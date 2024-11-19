@@ -19,17 +19,12 @@ Future<Response> _getUser(
   RequestContext context,
   String id,
 ) async {
-  print('1');
   final user = await context.read<UserRepository>().userFromId(id);
 
-  print('2');
   if (user == null) {
-    print('3');
     return Response(statusCode: HttpStatus.forbidden);
   } else {
-    print('4');
     if (user.id != id) {
-      print('5');
       return Response(statusCode: HttpStatus.forbidden);
     }
     return Response.json(

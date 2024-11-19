@@ -8,11 +8,7 @@ Future<Response> onRequest(RequestContext context) async {
   return switch (context.request.method) {
     HttpMethod.get => _getLists(context),
     HttpMethod.post => _createList(context),
-    _ => Future.value(
-        Response(
-          statusCode: HttpStatus.methodNotAllowed,
-        ),
-      ),
+    _ => Future.value(Response(statusCode: HttpStatus.methodNotAllowed)),
   };
 }
 

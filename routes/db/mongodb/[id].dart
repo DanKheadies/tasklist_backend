@@ -10,11 +10,7 @@ Future<Response> onRequest(
   return switch (context.request.method) {
     HttpMethod.patch => _updateList(context, id),
     HttpMethod.delete => _deleteList(context, id),
-    _ => Future.value(
-        Response(
-          statusCode: HttpStatus.methodNotAllowed,
-        ),
-      ),
+    _ => Future.value(Response(statusCode: HttpStatus.methodNotAllowed)),
   };
 }
 
