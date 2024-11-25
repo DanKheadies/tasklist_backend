@@ -15,7 +15,8 @@ Future<Response> _getRecipes(RequestContext context) async {
     // 'https://low-carb-recipes.p.rapidapi.com/random',
     // Uri.parse('https://api.spoonacular.com/recipes/complexSearch'),
     Uri.parse(
-      'https://datausa.io/api/data?drilldowns=Nation&measures=Population',
+      // 'https://datausa.io/api/data?drilldowns=Nation&measures=Population',
+      'https://www.themealdb.com/api/json/v1/1/random.php',
     ),
     headers: {
       'Content-Type': 'application/json',

@@ -12,6 +12,8 @@ Handler middleware(Handler handler) {
       // final command = await conn.connect('192.168.1.127', 6379);
       // final command = await conn.connect('127.0.0.1', 6379);
       try {
+        // Note: freezes here, i.e. never succeeds or fails, after initial
+        // login and/or account deletion.
         await command.send_object([
           'AUTH',
           'default',
